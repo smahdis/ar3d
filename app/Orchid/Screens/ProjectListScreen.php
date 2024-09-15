@@ -68,7 +68,7 @@ class ProjectListScreen extends Screen
      */
     public function layout(): iterable
     {
-//        var_dump(json_encode($this->projects[0]->attachment()->latest()->first()));
+//        var_dump(($this->projects[0]->attachment()->latest()->first()->relative_url));
 //        die();
 
         return [
@@ -86,7 +86,7 @@ class ProjectListScreen extends Screen
 //                TD::make('model_file', 'Model'),
 
                 TD::make('model_file', 'Model')->render(fn (Project $model) => // Please use view('path')
-                    $model->attachments()->latest()->first() ? "<a href='{$model->attachments()->latest()->first()->relativeUrl()}'>{$model->attachment()->latest()->first()->original_name}</a>" : ""),
+                    $model->attachments()->latest()->first() ? "<a href='{$model->attachments()->latest()->first()->relative_url}'>{$model->attachment()->latest()->first()->original_name}</a>" : ""),
 
                 TD::make('value', 'Value'),
 
