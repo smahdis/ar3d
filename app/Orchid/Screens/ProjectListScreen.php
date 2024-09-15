@@ -85,8 +85,10 @@ class ProjectListScreen extends Screen
                         ->href(route('platform.project.edit', ["project" => $model->id]))),
 //                TD::make('model_file', 'Model'),
 
-                TD::make('model_file', 'Model')->render(fn (Project $model) => // Please use view('path')
-                    $model->attachments()->latest()->first() ? "<a href='{$model->attachments()->latest()->first()->relative_url}'>{$model->attachment()->latest()->first()->original_name}</a>" : ""),
+                TD::make('model_file', 'Model')->render(function (Project $model) {
+                    $url = $model->attachments()->latest()->first() ? preg_replace('#^' . preg_quote('/1') . '#', '', $model->attachments()->latest()->first()->relative_url) : "";
+                    return $model->attachments()->latest()->first() ? "<a href='{$url}'>{$model->attachment()->latest()->first()->original_name}</a>" : "";
+                }),
 
                 TD::make('value', 'Value'),
 
