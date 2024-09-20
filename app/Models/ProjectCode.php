@@ -7,21 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 use Orchid\Attachment\Attachable;
 use Orchid\Screen\AsSource;
 
-class Project extends Model
+class ProjectCode extends Model
 {
-    use HasFactory, AsSource, Attachable;
-
+    use HasFactory,AsSource, Attachable;
+    public $timestamps = false;
     protected $fillable = [
-        'title',
-        'value',
-        'model_file',
-        'image',
-        'codes',
+        'project_id',
+        'code',
         'status',
     ];
-
-    protected $casts = [
-        'codes' => 'array',
-    ];
-
 }

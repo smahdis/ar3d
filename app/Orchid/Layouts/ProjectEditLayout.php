@@ -4,6 +4,7 @@ namespace App\Orchid\Layouts;
 
 use App\Models\Tag;
 use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Fields\Matrix;
 use Orchid\Screen\Fields\Relation;
 use Orchid\Screen\Fields\Select;
 use Orchid\Screen\Fields\Upload;
@@ -57,6 +58,20 @@ class ProjectEditLayout extends Rows
                 ->title(__('Value'))
                 ->placeholder(__('Value')),
 
+
+            Matrix::make('project.codes')
+                ->columns([
+                    'Code',
+                ])
+                ->fields([
+
+                    'Code' => Input::make()
+                        ->required()
+                        ->title(__('Code/Link'))
+                        ->value(1)
+                        ->placeholder(__('Code/Link')),
+
+                ]),
 
 
         ];

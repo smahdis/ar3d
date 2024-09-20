@@ -1,0 +1,6 @@
+[id^="matrix-field-code-"], .matrix .bootstrap-tagsinput, .matrix .chosen-choices, .matrix .chosen-single, .matrix .form-control, .matrix .select2-selection--single {
+    border: 1px solid #dedada !important;
+    margin: 10px auto;
+    max-width: 90%;
+    max-height: 90%;
+}

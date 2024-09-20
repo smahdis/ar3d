@@ -3,8 +3,10 @@
 namespace App\Orchid\Screens;
 
 use App\Models\Branch;
+use App\Models\JobRelatedVideo;
 use App\Models\Pilgrim;
 use App\Models\Project;
+use App\Models\ProjectCode;
 use App\Orchid\Layouts\Branch\BranchEditLayout;
 use App\Orchid\Layouts\Branch\BranchEditTranslationEnglishLayout;
 use App\Orchid\Layouts\Branch\BranchEditTranslationGeorgianLayout;
@@ -111,6 +113,8 @@ class ProjectEditScreen extends Screen
 
         $data = $request->get('project');
         $data['model_file'] = $data['model_file'][0];
+        $data['codes'] = array_values($data['codes']);
+
 //        var_dump($data);
 //        die();
 
@@ -122,6 +126,17 @@ class ProjectEditScreen extends Screen
         $this->project->attachment()->syncWithoutDetaching(
             $request->input('project.model_file', [])
         );
+
+        ProjectCode::where('project_id', $this->project->id)
+            ->update([
+                'status' => -1
+            ]);
+        foreach ($data['codes'] as $code) {
+            $jrv = ProjectCode::create([
+                'project_id' => $this->project->id,
+                'code' => isset($code['Code']) ? $code['Code'][0] : "",
+            ]);
+        }
 
         Alert::info('Project was created successfully');
 
@@ -148,11 +163,31 @@ class ProjectEditScreen extends Screen
 
         $data = $request->get('project');
         $data['model_file'] = $data['model_file'][0];
+        $data['codes'] = array_values($data['codes']);
 
         $project->fill($data)->save();
         $project->attachment()->syncWithoutDetaching(
             $request->input('project.model_file', [])
         );
+
+
+        if($project->wasChanged('codes')) {
+//        if(!empty($data['related_videos'])) {
+            ProjectCode::where('project_id', $this->project->id)
+                ->update([
+                    'status' => -1
+                ]);
+            foreach ($data['codes'] as $code) {
+                $jrv = ProjectCode::create([
+                    'project_id' => $project->id,
+                    'status' => 1,
+                    'code' => isset($code['Code']) ? $code['Code'][0] : "",
+                ]);
+            }
+
+        }
+
+
         Alert::info('Project was created successfully');
 
         return redirect()->route('platform.project.list', ["project" =>  $this->project->id]);
