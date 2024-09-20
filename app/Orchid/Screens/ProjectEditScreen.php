@@ -181,7 +181,7 @@ class ProjectEditScreen extends Screen
                 $jrv = ProjectCode::create([
                     'project_id' => $project->id,
                     'status' => 1,
-                    'code' => isset($code['Code']) ? $code['Code'][0] : "",
+                    'code' => $code['Code'] ?? "",
                 ]);
             }
 
