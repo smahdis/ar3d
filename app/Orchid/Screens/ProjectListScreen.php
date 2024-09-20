@@ -90,7 +90,7 @@ class ProjectListScreen extends Screen
                     return $model->attachments()->latest()->first() ? "<a href='{$url}'>{$model->attachment()->latest()->first()->original_name}</a>" : "";
                 }),
 
-                TD::make('value', 'Value'),
+//                TD::make('value', 'Value'),
 
 
                 TD::make('updated_timezone_date', 'Created')

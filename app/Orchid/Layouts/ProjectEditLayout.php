@@ -53,21 +53,23 @@ class ProjectEditLayout extends Rows
 //                ->maxFiles(1)
 //                ->horizontal(),
 
-            Input::make('project.value')
-                ->required()
-                ->title(__('Value'))
-                ->placeholder(__('Value')),
+//            Input::make('project.value')
+//                ->required()
+//                ->title(__('Value'))
+//                ->placeholder(__('Value')),
 
 
             Matrix::make('project.codes')
                 ->columns([
                     'Code',
                 ])
+                ->value(['{}'])
+//                ->addRowLabel("Codes")
                 ->fields([
 
                     'Code' => Input::make()
                         ->required()
-                        ->title(__('Code/Link'))
+//                        ->title(__('Code/Link'))
                         ->value(1)
                         ->placeholder(__('Code/Link')),
 
