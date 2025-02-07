@@ -13,6 +13,7 @@ use App\Orchid\Layouts\Branch\BranchEditTranslationGeorgianLayout;
 use App\Orchid\Layouts\ProjectEditLayout;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Screen;
@@ -115,7 +116,8 @@ class ProjectEditScreen extends Screen
         $data['model_file'] = $data['model_file'][0];
         $data['codes'] = array_values($data['codes']);
 
-        Log:\Laravel\Prompts\info(json_encode(["code" => $data['codes']]));
+
+        Log::info(json_encode(["code" => $data['codes']]));
 
 //        var_dump($data);
 //        die();
@@ -167,7 +169,7 @@ class ProjectEditScreen extends Screen
         $data['model_file'] = $data['model_file'][0];
         $data['codes'] = array_values($data['codes']);
 
-        Log:\Laravel\Prompts\info(json_encode(["code" => $data['codes']]));
+        Log::info(json_encode(["code" => $data['codes']]));
 
         $project->fill($data)->save();
         $project->attachment()->syncWithoutDetaching(
