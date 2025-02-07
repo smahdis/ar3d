@@ -140,7 +140,7 @@ class ProjectEditScreen extends Screen
             ->update([
                 'status' => -1
             ]);
-        foreach ($data['codes'] as $code) {
+        foreach ($this->project->codes as $code) {
             $jrv = ProjectCode::create([
                 'project_id' => $this->project->id,
                 'code' => isset($code['Code']) ? $code['Code'][0] : "",
@@ -192,7 +192,7 @@ class ProjectEditScreen extends Screen
                 ->update([
                     'status' => -1
                 ]);
-            foreach ($data['codes'] as $code) {
+            foreach ($this->project->codes as $code) {
                 $jrv = ProjectCode::create([
                     'project_id' => $project->id,
                     'status' => 1,
