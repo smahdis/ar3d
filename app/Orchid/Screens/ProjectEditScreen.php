@@ -117,7 +117,7 @@ class ProjectEditScreen extends Screen
         $data['codes'] = array_values($data['codes']);
 
 
-        Log::info(json_encode(["code" => $data['codes']]));
+
 
 //        var_dump($data);
 //        die();
@@ -126,6 +126,11 @@ class ProjectEditScreen extends Screen
             $this->project = new Project();
         }
         $this->project->fill($data)->save();
+
+        Log::info(json_encode([
+            "code" => $data['codes'],
+            "code from model" => $this->project->codes
+        ]));
 
         $this->project->attachment()->syncWithoutDetaching(
             $request->input('project.model_file', [])
@@ -169,13 +174,17 @@ class ProjectEditScreen extends Screen
         $data['model_file'] = $data['model_file'][0];
         $data['codes'] = array_values($data['codes']);
 
-        Log::info(json_encode(["code" => $data['codes']]));
+//        Log::info(json_encode(["code" => $data['codes']]));
 
         $project->fill($data)->save();
         $project->attachment()->syncWithoutDetaching(
             $request->input('project.model_file', [])
         );
 
+        Log::info(json_encode([
+            "code" => $data['codes'],
+            "code from model" => $this->project->codes
+        ]));
 
         if($project->wasChanged('codes')) {
 //        if(!empty($data['related_videos'])) {
