@@ -115,6 +115,8 @@ class ProjectEditScreen extends Screen
         $data['model_file'] = $data['model_file'][0];
         $data['codes'] = array_values($data['codes']);
 
+        Log:\Laravel\Prompts\info(json_encode(["code" => $data['codes']]));
+
 //        var_dump($data);
 //        die();
 
