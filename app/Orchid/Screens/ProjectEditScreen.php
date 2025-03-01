@@ -104,7 +104,7 @@ class ProjectEditScreen extends Screen
 
         $this->validate(request(), [
             'project.title' => 'required|max:255',
-            'project.model_file' => 'required|max:255',
+            'project.model_file' => 'required|max:850000',
 
         ], [],
             [
