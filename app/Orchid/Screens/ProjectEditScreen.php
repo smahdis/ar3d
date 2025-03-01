@@ -161,7 +161,7 @@ class ProjectEditScreen extends Screen
     public function update(Request $request, Project $project): RedirectResponse
     {
         $this->validate(request(), [
-            'project.title' => 'required|max:255',
+            'project.title' => 'required|max:850000',
             'project.model_file' => 'required|max:255',
 
         ], [],
