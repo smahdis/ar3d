@@ -104,12 +104,12 @@ class ProjectEditScreen extends Screen
 
         $this->validate(request(), [
             'project.title' => 'required|max:255',
-//            'project.model_file' => 'required|max:850000',
+            'project.model_file' => 'required|max:850000',
 
         ], [],
             [
                 'project.title' => 'Title',
-//                'project.model_file'=> 'Model File',
+                'project.model_file'=> 'Model File',
             ]);
 
         $data = $request->get('project');
@@ -162,12 +162,12 @@ class ProjectEditScreen extends Screen
     {
         $this->validate(request(), [
             'project.title' => 'required|max:255',
-//            'project.model_file' => 'required|max:850000',
+            'project.model_file' => 'required|max:850000',
 
         ], [],
             [
                 'project.title' => 'عنوان',
-//                'project.model_file'=> 'فایل مدل',
+                'project.model_file'=> 'فایل مدل',
             ]);
 
         $data = $request->get('project');
